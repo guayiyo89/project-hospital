@@ -16,6 +16,8 @@ import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.co
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 //temporal
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
     Graficas1Component,
     GraficoDonaComponent,
     IncrementadorComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    PromesasComponent,
+    RxjsComponent
 	],
 	exports:[
 	//aqui se colocan las paginas q se van a llamar desde componentes fuera del modulo
