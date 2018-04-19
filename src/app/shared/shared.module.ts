@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+// pipes
+import { PipeModule } from '../pipes/pipe.module';
 
 @NgModule({
 	declarations:[
@@ -17,7 +19,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 		SidebarComponent,
 		BreadcrumbsComponent		
 	],
-	imports:[RouterModule, CommonModule]
+	imports:[RouterModule, CommonModule, PipeModule]
 	})
 
 export class SharedModule { }

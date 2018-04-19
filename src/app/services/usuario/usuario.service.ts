@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
 import { stringify } from '@angular/compiler/src/util';
 import { Router } from '@angular/router';
+import { UploadFileService } from '../../services/uploadFIle/upload-file.service';
 
 @Injectable()
 export class UsuarioService {
@@ -11,7 +12,7 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor( public http: HttpClient, public router: Router ) {
+  constructor( public http: HttpClient, public router: Router, public _upload: UploadFileService ) {
     // llamamos el cargar los datos del LS
     this.loadStorage();
   }
@@ -91,6 +92,32 @@ export class UsuarioService {
         return resp.usuario;
       });
 
+  }
+
+  actualizarUsuario( usuario: Usuario ) {
+    let url = URL_SERVICIOS + '/usuario/' + usuario._id;
+    url += '?token=' + this.token;
+
+    return this.http.put( url, usuario )
+      .map( (resp: any) => {
+        // para q se efectue el cambio en el LS
+        this.guardadoLs(resp.usuario._id, this.token, resp.usuario );
+        swal('Usuario Actualizado', usuario.nombre, 'success');
+        return true;
+      });
+  }
+
+  // es una promesa
+  cambiarImg(file: File, id: string) {
+    this._upload.uploadImage( file, 'usuarios', id)
+      .then( (resp: any) => {
+        this.usuario.img = resp.usuario.img;
+        swal('Imagen Subida Correctamente', this.usuario.nombre, 'success');
+        this.guardadoLs(id, this.token, this.usuario);
+      })
+      .catch( resp => {
+        console.log(resp);
+      });
   }
 
 }

@@ -19,6 +19,10 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 
+// pipes
+import { PipeModule } from '../pipes/pipe.module';
+import { ProfileComponent } from './profile/profile.component';
+
 
 @NgModule({
 	declarations:[
@@ -30,7 +34,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     IncrementadorComponent,
     AccountSettingsComponent,
     PromesasComponent,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
 	],
 	exports:[
 	//aqui se colocan las paginas q se van a llamar desde componentes fuera del modulo
@@ -46,6 +51,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 	SharedModule,
 	FormsModule,
 	ChartsModule,
+	PipeModule,
 	PAGES_ROUTES
 	]
 })

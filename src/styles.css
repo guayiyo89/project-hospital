@@ -2,3 +2,7 @@
 #themecolors li{
 	cursor: pointer;
 }
+
+.w150{
+ max-width: 200px;
+}

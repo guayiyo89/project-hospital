@@ -23,7 +23,7 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     LoginComponent,
     NopagefoundComponent,
-    RegisterComponent
+    RegisterComponent,
     // IncrementadorComponent
   ],
   imports: [
