@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input #input (keyup)="buscarUser( input.value )" class="form-control" type="text" name="" placeholder="Buscar Usuario...">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="cargando" class="row">
+  <div class="col-sm-12">
+    <div class="alert alert-primary" align="center">Loading <i class="fa fa-refresh fa-spin fa-2x"></i></div>
+  </div>
+</div>
+
+<div *ngIf="!cargando" class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title"> Usuarios Registrados <small>( {{total}} )</small></h3>
+        <table class="table  table-hover">
+
+          <thead>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Role</th>
+            <th>Auth</th>
+            <th></th>
+          </thead>
+
+          <tbody>
+            <tr class="animated fadeIn" *ngFor="let user of usuarios; let i = index">
+              <td><img [src]="user.img | image" width="50px" (click)="mostrarModal(user._id)" alt=""></td>
+              <td>{{user.nombre}}</td>
+              <td>{{user.email}}</td>
+              <td>
+                <select name="roel" [(ngModel)]="user.role" class="form-control">
+                  <option value="ADMIN_ROLE">Admin</option>
+                  <option value="USER_ROLE">User</option>
+                </select>
+              </td>
+              <td>
+                <label *ngIf="user.google" class="label label-danger">Google</label>
+                <label *ngIf="!user.google" class="label label-info">Normal</label>
+              </td>
+              <td><button class="btn btn-success" (click)="asignaRole(user)" ><i class="fa fa-save"></i></button>
+                  <button (click)="borrarUser(user)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></td>
+            </tr>
+          </tbody>
+
+        </table>
+        <button (click)="cambiarDesde(-5)" class="btn btn-primary"><i class="fa fa-chevron-left"></i></button>
+        <button (click)="cambiarDesde(5)" class="btn btn-primary"><i class="fa fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

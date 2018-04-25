@@ -22,7 +22,11 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 // pipes
 import { PipeModule } from '../pipes/pipe.module';
 import { ProfileComponent } from './profile/profile.component';
-
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { ModalUploadComponent } from './modal-upload/modal-upload.component';
+import { HospitalesComponent } from './hospitales/hospitales.component';
+import { MedicosComponent } from './medicos/medicos.component';
+import { MedicoComponent } from './medicos/medico.component';
 
 @NgModule({
 	declarations:[
@@ -35,7 +39,12 @@ import { ProfileComponent } from './profile/profile.component';
     AccountSettingsComponent,
     PromesasComponent,
     RxjsComponent,
-    ProfileComponent
+    ProfileComponent,
+	UsuariosComponent,
+	ModalUploadComponent,
+	HospitalesComponent,
+	MedicosComponent,
+	MedicoComponent
 	],
 	exports:[
 	//aqui se colocan las paginas q se van a llamar desde componentes fuera del modulo
@@ -43,7 +52,8 @@ import { ProfileComponent } from './profile/profile.component';
     ProgressComponent,
     Graficas1Component,
     GraficoDonaComponent,
-    IncrementadorComponent
+	IncrementadorComponent,
+	ModalUploadComponent
 	],
 	imports:[
 	CommonModule,

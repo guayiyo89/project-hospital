@@ -55,8 +55,7 @@ export class RegisterComponent implements OnInit {
     }
 
     // si no has aceptado los terminos
-    if ( !this.forma.value.condiciones ){
-      console.log( 'Aceptalas o arderas en el infierno ');
+    if ( !this.forma.value.condiciones ) {
       swal('Atención', 'Acepta las condiciones o vete!!', 'warning');
       return;
     }

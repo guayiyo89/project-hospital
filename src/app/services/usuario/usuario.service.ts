@@ -100,8 +100,13 @@ export class UsuarioService {
 
     return this.http.put( url, usuario )
       .map( (resp: any) => {
-        // para q se efectue el cambio en el LS
-        this.guardadoLs(resp.usuario._id, this.token, resp.usuario );
+
+        // si el usuario intenta cambiar por si mismo su ROL
+        if (usuario._id === this.usuario._id) {
+          // para q se efectue el cambio en el LS
+          this.guardadoLs(resp.usuario._id, this.token, resp.usuario );
+        }
+
         swal('Usuario Actualizado', usuario.nombre, 'success');
         return true;
       });
@@ -117,6 +122,29 @@ export class UsuarioService {
       })
       .catch( resp => {
         console.log(resp);
+      });
+  }
+
+  // cargar Usuarios
+  cargarUsuarios( desde: number = 0 ) {
+    let url = URL_SERVICIOS + '/usuario?desde=' + desde;
+    return this.http.get(url);
+  }
+
+  buscarUsuarios( termino: string ) {
+    let url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
+    return this.http.get(url)
+      .map((resp: any) => resp.usuarios);
+  }
+
+  // borrar usuarios
+  deleteUsuario( id: string ) {
+    let url = URL_SERVICIOS + '/usuario/' + id;
+    url += '?token=' + this.token;
+    return this.http.delete(url)
+      .map((resp: any) => {
+        swal('Borrado Exitoso', 'Se ha borrado el usuario: ' + resp.usuario._id, 'success');
+        return true;
       });
   }
 
